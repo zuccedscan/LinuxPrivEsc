@@ -124,7 +124,7 @@ id
 
 ## 6. Privilege Escalation via SUID
 
-Make note of all the SUID binaries `suid-env`, `suid-env`, `suid-env2` .
+Make note of all the SUID binaries `suid-so`, `suid-env`, `suid-env2` .
 
 ```sh
 find / -type f -perm -04000 -ls 2>/dev/null
