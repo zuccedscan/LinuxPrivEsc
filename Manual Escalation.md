@@ -5,7 +5,7 @@
 - [3. Escalate Privileges with SSH Key](#3-escalate-privileges-with-ssh-key)
 - [4. Shell Escaping via Sudo](#4-shell-escaping-via-sudo)
 - [5. Using LD PRELOAD](#5-Using-LD-PRELOAD)
-- [6. SUID Shared Object Injection](#6-SUID-Shared-Object-Injection)
+- [6. Privilege Escalation via SUID](#6-Privilege-Escalation-via-SUID)
 
 ## 1. Search Stored Passwords from Config Files
 ### Commands to Find Passwords and SSH Keys
@@ -124,7 +124,7 @@ id
 
 ## 6. Privilege Escalation via SUID
 
-Make note of all the SUID binaries `suid-so` .
+Make note of all the SUID binaries `suid-env`, `suid-env`, `suid-env2` .
 
 ```sh
 find / -type f -perm -04000 -ls 2>/dev/null
