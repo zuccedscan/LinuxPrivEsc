@@ -167,3 +167,13 @@ id
 ```sh
 strings /usr/local/bin/suid-env
 ```
+
+---
+
+# short
+
+getcap -r / 2>/dev/null (capabilities)
+
+cat /etc/crontab (cron)
+
+cat /etc/exports (nfs root)
