@@ -102,6 +102,8 @@ Here, we're telling Apache (with root privileges) to treat /etc/shadow as its co
 
 ## 5. Using LD PRELOAD
 
+LD_PRELOAD is a function that allows any program to use shared libraries. If the "env_keep" option is enabled we can generate a shared library which will be loaded and executed before the program is run. Please note the LD_PRELOAD option will be ignored if the real user ID is different from the effective user ID. <br>
+<br>
 1. Type `nano x.c` and paste the code and save:
 ```c
 #include <stdio.h>
