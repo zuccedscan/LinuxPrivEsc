@@ -183,3 +183,7 @@ cat /etc/crontab (cron)
 cat /etc/exports (nfs root)
 
 echo $PATH
+
+https://tryhackme.com/room/linprivesc
+
+https://tryhackme.com/room/linuxprivescarena
