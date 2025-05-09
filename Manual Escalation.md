@@ -181,3 +181,5 @@ getcap -r / 2>/dev/null (capabilities)
 cat /etc/crontab (cron)
 
 cat /etc/exports (nfs root)
+
+echo $PATH
